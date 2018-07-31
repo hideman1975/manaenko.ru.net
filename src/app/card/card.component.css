@@ -1,0 +1,185 @@
+.example-card {
+  max-width: 400px;
+}
+
+.example-header-image {
+
+  background-size: cover;
+}
+
+.card {
+  width: 370px;
+  border: 3px solid;
+  border-radius: 6px;
+  padding-bottom: 12px;
+}
+
+/*.interaction-header {*/
+  /*display: flex;*/
+  /*padding: 8px;*/
+  /*background-color: #f2f2f2;*/
+  /*border-top-left-radius: 6px;*/
+  /*border-top-right-radius: 6px;*/
+  /*color: rgb(60, 81, 117);*/
+  /*margin-bottom: 1em;*/
+/*}*/
+
+/* .alerting-state-buttons {
+    margin-top: 1em;
+} */
+
+.flex-item-vertical-centered {
+  align-self: center;
+}
+
+.interaction-header-info {
+  padding-left: 6px;
+  flex-grow: 1;
+}
+
+.interaction-header-info-first-line {
+  font-size: 1.3em;
+}
+
+.interaction-time {
+  flex-shrink: 0;
+  font-size: 1.3em;
+}
+
+.flex-centered {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.ok-color {
+  color: green;
+}
+
+.not-ok-color {
+  color: red;
+}
+
+.alerting-background {
+  background-color: orange;
+}
+
+.active-chat-icon-background {
+  background-color: rgb(59, 80, 100);
+}
+
+.alerting-border {
+  border-width: 3px;
+  border-color: orange;
+}
+
+.normal-border {
+  border-width: 1px;
+  border-color: #e2e2e2;
+}
+
+/*.icon-container {*/
+  /*width: 45px;*/
+  /*height: 45px;*/
+  /*display: inline-flex;*/
+  /*align-items: flex-start;*/
+  /*justify-content: center;*/
+  /*border-radius: 50%;*/
+  /*color: white;*/
+  /*flex-shrink: 0;*/
+/*}*/
+
+/*.interaction-controls-group {*/
+  /*border-bottom: 1px solid #e2e2e2;*/
+/*}*/
+
+/*.interaction-type-icon {*/
+  /*font-size: 26px;*/
+/*}*/
+
+/*.interaction-messages {*/
+  /*background-color: white;*/
+  /*!* padding-top: 1em; *!*/
+  /*height: 10em;*/
+  /*overflow-y: auto;*/
+/*}*/
+
+/*.interaction-message {*/
+  /*margin-bottom: 0.5em;*/
+  /*display: flex;*/
+  /*margin-left: 0.5em;*/
+  /*margin-right: 0.5em;*/
+  /*word-break: break-all;*/
+/*}*/
+
+/*.agent-message-container {*/
+  /*justify-content: flex-end;*/
+/*}*/
+
+/*.agent-message {*/
+  /*background-color: #f2f2f2;*/
+  /*padding: 0.5em 0.5em 0.5em 0.5em;*/
+  /*border-radius: 6px;*/
+  /*max-width: calc(100% - 4em);*/
+/*}*/
+
+/*.customer-message {*/
+  /*background-color: rgb(197, 225, 165);*/
+  /*padding: 0.5em 0.5em 0.5em 0.5em;*/
+  /*border-radius: 6px;*/
+  /*max-width: calc(100% - 4em);*/
+/*}*/
+
+/*.interaction-send-message-controls {*/
+  /*display: flex;*/
+  /*align-items: center;*/
+  /*padding: 0 0.5em 0 0.5em;*/
+/*}*/
+
+/*.interaction-send-message-text {*/
+  /*flex-grow: 1;*/
+/*}*/
+
+/*.interaction-send-message-buttons {*/
+  /*flex-shrink: 0;*/
+/*}*/
+
+button[mat-icon-button].chat-send-button {
+  background-color: transparent;
+  width: 38px;
+  height: 38px;
+  font-size: 25px;
+}
+
+button[mat-icon-button].chat-send-button.send {
+  color: orange;
+}
+
+/*.interaction-actions-buttons {*/
+  /*padding-top: 0.5em;*/
+  /*padding-bottom: 0.5em;*/
+/*}*/
+
+/*.interaction-action-button-container {*/
+  /*display: inline-block;*/
+/*}*/
+
+/*.interaction-action-button-container button[mat-icon-button] {*/
+  /*font-size: 1.3em;*/
+  /*margin-left: 0.5em;*/
+/*}*/
+
+/*.call-details-container {*/
+  /*padding: 1em 0 0.5em 0.5em;*/
+/*}*/
+
+/*.example-button {*/
+  /*display: block;*/
+  /*width: 48px;*/
+  /*margin: 80px auto 400px;*/
+/*}*/
+
+/*.example-container {*/
+  /*height: 200px;*/
+  /*overflow: auto;*/
+  /*border: 1px solid #ccc;*/
+/*}*/

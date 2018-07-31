@@ -1,0 +1,13 @@
+
+button[mat-icon-button].chat-send-button {
+  background-color: transparent;
+  width: 38px;
+  height: 38px;
+  font-size: 25px;
+  border: none;
+}
+
+button[mat-icon-button].chat-send-button.send {
+  color: orange;
+}
+

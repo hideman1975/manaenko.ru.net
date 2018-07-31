@@ -1,0 +1,13 @@
+<!--<h2 mat-dialog-title>Chose Icon</h2>-->
+<mat-dialog-content>
+  <button (click)="chose(this)" mat-icon-button mat-dialog-close class="aoc-sentiment-happy chat-send-button send"></button>
+  <button (click)="chose('aoc-sentiment-neutral')" mat-icon-button mat-dialog-close class="aoc-sentiment-neutral chat-send-button send"></button>
+  <button (click)="chose('aoc-sentiment-sad')" mat-icon-button mat-dialog-close class="aoc-sentiment-sad chat-send-button send"></button>
+  <button (click)="chose('aoc-sentiment-very-sad')" mat-icon-button mat-dialog-close class="aoc-sentiment-very-sad chat-send-button send"></button>
+</mat-dialog-content>
+<!--<mat-dialog-actions>-->
+  <!--<button mat-button (click)='chose()'>Action</button>-->
+  <!--&lt;!&ndash; The mat-dialog-close directive optionally accepts a value as a result for the dialog. &ndash;&gt;-->
+  <!--&lt;!&ndash;<button mat-button [mat-dialog-close]="true">Yes</button>&ndash;&gt;-->
+<!--</mat-dialog-actions>-->
+
