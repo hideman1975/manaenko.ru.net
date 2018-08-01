@@ -1,0 +1,12 @@
+<h2>Test MaterialDesign </h2>
+<app-overview-example-dialog></app-overview-example-dialog>
+
+<mat-form-field>
+<mat-select placeholder="Tooltip position" >
+<mat-option *ngFor="let icon of icons" [value]="icon">
+<app-material-icon  [image]="icon"></app-material-icon>
+</mat-option>
+</mat-select>
+</mat-form-field>
+
+
