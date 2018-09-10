@@ -24,9 +24,11 @@ import { ProjectsComponent } from './projects/projects.component';
 
 
   const appRotes: Routes = [
+  {path: '', component: CardComponent},
   {path: 'projects', component: ProjectsComponent},
   {path: 'youtube', component: SearchComponent},
   {path: 'home', component: CardComponent},
+  {path: 'products', component: OverviewExampleDialogComponent},
   {path: 'sandbox', component: SandboxComponent}
 ];
 

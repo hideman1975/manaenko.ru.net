@@ -25,7 +25,11 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/phaser-ce/build/custom/pixi.js",
+              "node_modules/phaser-ce/build/custom/p2.js",
+              "node_modules/phaser-ce/build/custom/phaser-split.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -50,7 +54,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "manaenko-ru:build"
+            "browserTarget": "manaenko-ru:build",
+            "port": 4900
           },
           "configurations": {
             "production": {
@@ -124,4 +129,4 @@
     }
   },
   "defaultProject": "manaenko-ru"
-}
+  }

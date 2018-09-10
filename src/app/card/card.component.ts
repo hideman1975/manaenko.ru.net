@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, Inject } from '@angular/core';
-
+// import {MdProgressBarModule} from '@angular/material';
 
 @Component({
   selector: 'app-card',

@@ -1,5 +1,5 @@
 import { NgModule} from '@angular/core';
-
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 import {
   MatButtonModule,
@@ -52,7 +52,7 @@ import {
     MatTabsModule,
     MatSlideToggleModule,
     MatPaginatorModule,
-    // MatDialog,
+    MatProgressBarModule
     // MatDialogRef,
     // MAT_DIALOG_DATA
   ],
@@ -79,7 +79,8 @@ import {
     MatAutocompleteModule,
     MatTabsModule,
     MatSlideToggleModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatProgressBarModule
   ]
 })
 
