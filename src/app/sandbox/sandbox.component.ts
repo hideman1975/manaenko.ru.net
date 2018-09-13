@@ -28,23 +28,30 @@ export class SandboxComponent {
   enemyBullet;
   enemyBullets;
   firingTimer;
+  fireSpeed;
   stateText;
-  // livingEnemies;
+  livingEnemies;
   createAliens;
+  createAliens2;
+  createAliens3;
   enemyFires;
   fireBullet;
+  tween;
+  descend;
+  level: number;
 
 
   constructor() {
-    this.game = new Game(800, 600, AUTO, '', {preload: this.preload, create: this.create, update: this.update, render: this.render});
-
-
+    this.game = new Game(800, 600, AUTO, '',
+      {preload: this.preload, create: this.create, update: this.update} );
   }
 
   preload() {
     this.game.load.image('logo', 'assets/phaser.png');
     this.game.load.image('space', 'assets/space.png');
     this.game.load.image('invader', 'assets/invader.png');
+    this.game.load.image('invader2', 'assets/invader2.png');
+    this.game.load.image('invader3', 'assets/invader3.png');
     this.game.load.image('enemyBullet', 'assets/bullet71.png');
     this.game.load.spritesheet('ship', 'assets/cosmo01.png', 54, 44);
     this.game.load.spritesheet('kaboom', 'assets/explode.png', 128, 128);
@@ -59,7 +66,9 @@ export class SandboxComponent {
     this.seconds = 0;
     this.firingTimer = this.game.time.now + 2000;
     this.bulletTime = 0;
-    // this.livingEnemies = [];
+    this.livingEnemies = [];
+    this.level = 1;
+    this.fireSpeed = 2000;
 
     // let logo = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, 'logo');
     // logo.anchor.setTo(0.5, 0.5);
@@ -110,29 +119,48 @@ export class SandboxComponent {
         for (let x = 0; x < 10; x++) {
           const alien = this.aliens.create(x * 48, y * 50, 'invader');
           alien.anchor.setTo(0.5, 0.5);
-          alien.animations.add('fly', [0, 1, 2, 3], 20, true);
-          alien.play('fly');
-          alien.body.moves = false;
+          // alien.animations.add('fly', [0, 1, 2, 3], 20, true);
+          // alien.play('fly');
+          // alien.body.moves = false;
         }
       }
 
-      this.aliens.x = 100;
+      this.aliens.x = 20;
       this.aliens.y = 50;
 
-      //  All this does is basically start the invaders moving. Notice we're
-      // moving the Group they belong to, rather than the invaders directly.
-      const tween = this.game.add.tween(this.aliens).to({x: 200}, 2000, Phaser.Easing.Linear.None, true, 0, 1000, true);
-
-      //  When the tween loops it calls descend
-      tween.onLoop.add(descend, this);
-
-      function descend() {
-        this.aliens.y += 10;
-      }
     };
 
-    this.createAliens();
+    this.createAliens2 = () => {
 
+      for (let y = 0; y < 5; y++) {
+        for (let x = 0; x < 14; x++) {
+          const alien = this.aliens.create(x * 48, y * 50, 'invader2');
+          alien.anchor.setTo(0.5, 0.5);
+        }
+      }
+
+      this.aliens.x = 5;
+      this.aliens.y = 50;
+      this.stateText.visible = false;
+    };
+
+    this.createAliens3 = () => {
+
+      for (let y = 0; y < 5; y++) {
+        for (let x = 0; x < 5; x++) {
+          const alien = this.aliens.create(x * 100, y * 50, 'invader3');
+          alien.anchor.setTo(0.5, 0.5);
+        }
+      }
+
+      this.aliens.x = 5;
+      this.aliens.y = 50;
+      this.stateText.visible = false;
+    };
+
+
+    const tween = this.game.add.tween(this.aliens).to({x: 200}, 2000, Phaser.Easing.Linear.None, true, 0, 1000, true);
+    tween.onRepeat.add(() => { this.aliens.y += 10; }, this);
 
     //  The score
     this.scoreString = 'Score : ';
@@ -143,7 +171,7 @@ export class SandboxComponent {
     this.game.add.text(this.game.world.width - 180, this.game.world.height - 80, 'Lives : ', {font: '34px Arial', fill: '#fff'});
 
     //  Text
-    this.stateText = this.game.add.text(this.game.world.centerX, this.game.world.centerY, ' ', {font: '84px Arial', fill: '#fff'});
+    this.stateText = this.game.add.text(this.game.world.centerX, this.game.world.centerY, ' ', {font: '34px Arial', fill: '#fff'});
     this.stateText.anchor.setTo(0.5, 0.5);
     this.stateText.visible = false;
 
@@ -153,6 +181,8 @@ export class SandboxComponent {
       // ship1.angle = 90;
       ship1.alpha = 0.4;
     }
+
+    this.createAliens();
 
     function setupInvader(invader) {
 
@@ -178,8 +208,7 @@ export class SandboxComponent {
     this.explosions.forEach(setupInvader, this);
 
     this.fireBullet = () => {
-      console.log('fireBullet');
-      //  To avoid them being allowed to fire too fast we set a time limit
+       //  To avoid them being allowed to fire too fast we set a time limit
       if (this.game.time.now > this.bulletTime) {
         //  Grab the first bullet we can from the pool
         const bullet = this.bullets.getFirstExists(false);
@@ -195,7 +224,7 @@ export class SandboxComponent {
     };
 
     this.enemyFires = () => {
-      let livingEnemies = [];
+      const livingEnemies = [];
       //  Grab the first bullet we can from the pool
       const enemyBullet = this.enemyBullets.getFirstExists(false);
       this.aliens.forEachAlive(function (alien) {
@@ -209,7 +238,7 @@ export class SandboxComponent {
         // And fire the bullet from this enemy
         enemyBullet.reset(shooter.body.x, shooter.body.y);
         this.game.physics.arcade.moveToObject(enemyBullet, this.ship, 200);
-        this.firingTimer = this.game.time.now + 2000;
+        this.firingTimer = this.game.time.now + this.fireSpeed;
         // }
       }
 
@@ -218,12 +247,12 @@ export class SandboxComponent {
   }
 
   // -------------------create () completed ----------------------------------
-  render() {
-    this.game.debug.text('Space Invaders', 600, 20);
-    this.game.debug.text('Game Timer: ' + this.seconds, 600, 60);
-    this.game.debug.text('game.time.now: ' + this.game.time.now, 600, 80);
-    this.game.debug.text('firingTimer: ' + this.firingTimer, 600, 100);
-  }
+  // render() {
+  //   // this.game.debug.text('Space Invaders', 600, 20);
+  //   // this.game.debug.text('Game Timer: ' + this.seconds, 600, 60);
+  //   // this.game.debug.text('game.time.now: ' + this.game.time.now, 600, 80);
+  //   // this.game.debug.text('firingTimer: ' + this.firingTimer, 600, 100);
+  // }
 
 // -----------------------------------------------------------
   update() {
@@ -247,13 +276,50 @@ export class SandboxComponent {
         this.scoreText.text = this.scoreString + this.score;
 
         this.enemyBullets.callAll('kill', this);
-        this.stateText.text = ' You Won, \n Click to restart';
+        this.stateText.text = ' First Level completed, \n Click to start second level';
         this.stateText.visible = true;
 
         // the "click to restart" handler
-        this.game.input.onTap.addOnce(this.restart, this);
+      //   this.game.input.onTap.addOnce(restart, this);
+        if (this.level === 1) {
+          this.level++;
+          this.stateText.text = ' First Level completed, \n Click to start second level';
+          this.stateText.visible = true;
+          this.game.input.onTap.addOnce(secondLevel, this);
+        } else if (this.level === 2) {
+          this.level++;
+          this.stateText.text = ' Second Level completed, \n Click to start third level';
+          this.stateText.visible = true;
+          this.game.input.onTap.addOnce(thirdLevel, this);
+        }
+       }
+      //
+      // function restart() {
+      //   this.lives.callAll('revive');
+      //   this.createAliens();
+      //   this.ship.kill();
+      //   this.ship.revive();
+      // }
+
+      function secondLevel() {
+
+        console.log('Second Level started');
+        this.fireSpeed = this.fireSpeed - 500;
+        this.createAliens2();
+        this.lives.callAll('revive');
+        this.ship.kill();
+        this.ship.revive();
       }
 
+      function thirdLevel() {
+
+        console.log('Third Level started');
+        this.fireSpeed = this.fireSpeed - 500;
+        this.createAliens3();
+        this.lives.callAll('revive');
+        this.ship.kill();
+        this.ship.revive();
+      }
     }
 
     function enemyHitsPlayer(ship, bullet) {
@@ -284,7 +350,6 @@ export class SandboxComponent {
       }
 
       this.restart = () => {
-        console.log('restart');
         //  A new level starts
 
         // resets the life count
